@@ -148,9 +148,15 @@ section{position:relative;z-index:1;padding:96px 24px;}
 .ring-sparkle{animation:sparkle 2.6s ease-in-out infinite;}
 .ring-sparkle-2{animation:sparkle 2.6s ease-in-out infinite;animation-delay:.9s;}
 .ring-sparkle-3{animation:sparkle 2.6s ease-in-out infinite;animation-delay:1.6s;}
+.ring-sparkle-4{animation:sparkle 2.6s ease-in-out infinite;animation-delay:2.3s;}
 @keyframes sparkle{0%,100%{opacity:0;transform:scale(0.4)}40%{opacity:1;transform:scale(1)}65%{opacity:.6;transform:scale(0.8)}}
 .ring-gem-glow{animation:gemglow 3.2s ease-in-out infinite;}
 @keyframes gemglow{0%,100%{opacity:.7}50%{opacity:1}}
+.ring-pink-gem{animation:pinkgemglow 2.8s ease-in-out infinite;}
+.ring-pink-gem-2{animation:pinkgemglow 2.8s ease-in-out infinite;animation-delay:.7s;}
+.ring-pink-gem-3{animation:pinkgemglow 2.8s ease-in-out infinite;animation-delay:1.4s;}
+.ring-pink-gem-4{animation:pinkgemglow 2.8s ease-in-out infinite;animation-delay:2.1s;}
+@keyframes pinkgemglow{0%,100%{opacity:.8}50%{opacity:1}}
 .ring-band-shine{animation:bandshine 4s ease-in-out infinite;}
 @keyframes bandshine{0%,100%{opacity:.25}50%{opacity:.55}}
 
@@ -548,6 +554,30 @@ footer span{color:var(--pink-l);}
       <clipPath id="gemClip">
         <ellipse cx="95" cy="62" rx="28" ry="26"/>
       </clipPath>
+      <!-- Pink diamond gradients -->
+      <radialGradient id="pinkDiamond" cx="35%" cy="28%" r="60%">
+        <stop offset="0%"   stop-color="#fde8ef"/>
+        <stop offset="20%"  stop-color="#f5a8c0"/>
+        <stop offset="50%"  stop-color="#d4547a"/>
+        <stop offset="80%"  stop-color="#9e2858"/>
+        <stop offset="100%" stop-color="#5a0a28"/>
+      </radialGradient>
+      <radialGradient id="pinkDiamondGlow" cx="32%" cy="25%" r="55%">
+        <stop offset="0%"   stop-color="rgba(255,220,235,0.9)"/>
+        <stop offset="45%"  stop-color="rgba(212,84,122,0.4)"/>
+        <stop offset="100%" stop-color="rgba(90,10,40,0)"/>
+      </radialGradient>
+      <filter id="pinkglow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="2.2" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <!-- Clip paths for each pink diamond -->
+      <clipPath id="pd1clip"><ellipse cx="95" cy="33" rx="7.5" ry="6.5"/></clipPath>
+      <clipPath id="pd2clip"><ellipse cx="95" cy="91" rx="7.5" ry="6.5"/></clipPath>
+      <clipPath id="pd3clip"><ellipse cx="61" cy="50" rx="6" ry="6.5" transform="rotate(-30 61 50)"/></clipPath>
+      <clipPath id="pd4clip"><ellipse cx="129" cy="50" rx="6" ry="6.5" transform="rotate(30 129 50)"/></clipPath>
+      <clipPath id="pd5clip"><ellipse cx="61" cy="74" rx="6" ry="6.5" transform="rotate(30 61 74)"/></clipPath>
+      <clipPath id="pd6clip"><ellipse cx="129" cy="74" rx="6" ry="6.5" transform="rotate(-30 129 74)"/></clipPath>
     </defs>
 
     <!-- ── BAND BACK (the part behind the gem setting) ── -->
@@ -652,7 +682,95 @@ footer span{color:var(--pink-l);}
     <ellipse cx="72" cy="87" rx="4.5" ry="3" fill="#f4e090"/>
     <ellipse cx="118" cy="87" rx="4.5" ry="3" fill="#f4e090"/>
 
-    <!-- ── SPARKLES ── -->
+    <!-- ── PINK DIAMOND SIDE STONES ── -->
+    <!-- 6 pink diamonds orbiting the sapphire in gold bezel settings -->
+    <!-- Each: gold bezel collar → diamond body → facets → highlight -->
+
+    <!-- PD1 — Top center (12 o'clock) -->
+    <g class="ring-pink-gem">
+      <ellipse cx="95" cy="33" rx="9" ry="8" fill="url(#settingGrad)" opacity="0.85"/>
+      <ellipse cx="95" cy="33" rx="7.5" ry="6.5" fill="url(#pinkDiamond)" filter="url(#pinkglow)"/>
+      <g clip-path="url(#pd1clip)" fill="none" stroke="rgba(255,180,210,0.6)" stroke-width="0.7">
+        <ellipse cx="95" cy="31" rx="3.5" ry="2.8" stroke="rgba(255,210,230,0.75)"/>
+        <line x1="95" y1="26.5" x2="89" y2="31"/><line x1="95" y1="26.5" x2="101" y2="31"/>
+        <line x1="95" y1="39.5" x2="89" y2="35"/><line x1="95" y1="39.5" x2="101" y2="35"/>
+        <line x1="87.5" y1="33" x2="89" y2="31"/><line x1="102.5" y1="33" x2="101" y2="31"/>
+      </g>
+      <ellipse cx="95" cy="33" rx="7.5" ry="6.5" fill="url(#pinkDiamondGlow)"/>
+      <ellipse cx="91" cy="29" rx="3" ry="2" fill="rgba(255,240,248,0.75)" transform="rotate(-15 91 29)"/>
+      <circle cx="90" cy="28" r="1.2" fill="white" opacity="0.9"/>
+    </g>
+
+    <!-- PD2 — Bottom center (6 o'clock) -->
+    <g class="ring-pink-gem-2">
+      <ellipse cx="95" cy="91" rx="9" ry="8" fill="url(#settingGrad)" opacity="0.85"/>
+      <ellipse cx="95" cy="91" rx="7.5" ry="6.5" fill="url(#pinkDiamond)" filter="url(#pinkglow)"/>
+      <g clip-path="url(#pd2clip)" fill="none" stroke="rgba(255,180,210,0.6)" stroke-width="0.7">
+        <ellipse cx="95" cy="89" rx="3.5" ry="2.8" stroke="rgba(255,210,230,0.75)"/>
+        <line x1="95" y1="84.5" x2="89" y2="89"/><line x1="95" y1="84.5" x2="101" y2="89"/>
+        <line x1="95" y1="97.5" x2="89" y2="93"/><line x1="95" y1="97.5" x2="101" y2="93"/>
+        <line x1="87.5" y1="91" x2="89" y2="89"/><line x1="102.5" y1="91" x2="101" y2="89"/>
+      </g>
+      <ellipse cx="95" cy="91" rx="7.5" ry="6.5" fill="url(#pinkDiamondGlow)"/>
+      <ellipse cx="91" cy="87" rx="3" ry="2" fill="rgba(255,240,248,0.75)" transform="rotate(-15 91 87)"/>
+      <circle cx="90" cy="86" r="1.2" fill="white" opacity="0.9"/>
+    </g>
+
+    <!-- PD3 — Upper left (~10 o'clock) -->
+    <g class="ring-pink-gem-3">
+      <ellipse cx="61" cy="50" rx="8" ry="7.5" fill="url(#settingGrad)" opacity="0.85" transform="rotate(-30 61 50)"/>
+      <ellipse cx="61" cy="50" rx="6.5" ry="6" fill="url(#pinkDiamond)" filter="url(#pinkglow)" transform="rotate(-30 61 50)"/>
+      <g clip-path="url(#pd3clip)" fill="none" stroke="rgba(255,180,210,0.6)" stroke-width="0.7">
+        <ellipse cx="61" cy="48" rx="3" ry="2.5" stroke="rgba(255,210,230,0.7)" transform="rotate(-30 61 48)"/>
+        <line x1="61" y1="44" x2="56" y2="48"/><line x1="61" y1="44" x2="66" y2="48"/>
+        <line x1="61" y1="56" x2="56" y2="52"/><line x1="61" y1="56" x2="66" y2="52"/>
+      </g>
+      <ellipse cx="61" cy="50" rx="6.5" ry="6" fill="url(#pinkDiamondGlow)" transform="rotate(-30 61 50)"/>
+      <ellipse cx="58" cy="46" rx="2.5" ry="1.6" fill="rgba(255,240,248,0.72)" transform="rotate(-40 58 46)"/>
+      <circle cx="57" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    </g>
+
+    <!-- PD4 — Upper right (~2 o'clock) -->
+    <g class="ring-pink-gem-4">
+      <ellipse cx="129" cy="50" rx="8" ry="7.5" fill="url(#settingGrad)" opacity="0.85" transform="rotate(30 129 50)"/>
+      <ellipse cx="129" cy="50" rx="6.5" ry="6" fill="url(#pinkDiamond)" filter="url(#pinkglow)" transform="rotate(30 129 50)"/>
+      <g clip-path="url(#pd4clip)" fill="none" stroke="rgba(255,180,210,0.6)" stroke-width="0.7">
+        <ellipse cx="129" cy="48" rx="3" ry="2.5" stroke="rgba(255,210,230,0.7)" transform="rotate(30 129 48)"/>
+        <line x1="129" y1="44" x2="124" y2="48"/><line x1="129" y1="44" x2="134" y2="48"/>
+        <line x1="129" y1="56" x2="124" y2="52"/><line x1="129" y1="56" x2="134" y2="52"/>
+      </g>
+      <ellipse cx="129" cy="50" rx="6.5" ry="6" fill="url(#pinkDiamondGlow)" transform="rotate(30 129 50)"/>
+      <ellipse cx="126" cy="46" rx="2.5" ry="1.6" fill="rgba(255,240,248,0.72)" transform="rotate(-10 126 46)"/>
+      <circle cx="125" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    </g>
+
+    <!-- PD5 — Lower left (~8 o'clock) -->
+    <g class="ring-pink-gem">
+      <ellipse cx="61" cy="74" rx="8" ry="7.5" fill="url(#settingGrad)" opacity="0.85" transform="rotate(30 61 74)"/>
+      <ellipse cx="61" cy="74" rx="6.5" ry="6" fill="url(#pinkDiamond)" filter="url(#pinkglow)" transform="rotate(30 61 74)"/>
+      <g clip-path="url(#pd5clip)" fill="none" stroke="rgba(255,180,210,0.6)" stroke-width="0.7">
+        <ellipse cx="61" cy="72" rx="3" ry="2.5" stroke="rgba(255,210,230,0.7)" transform="rotate(30 61 72)"/>
+        <line x1="61" y1="68" x2="56" y2="72"/><line x1="61" y1="68" x2="66" y2="72"/>
+        <line x1="61" y1="80" x2="56" y2="76"/><line x1="61" y1="80" x2="66" y2="76"/>
+      </g>
+      <ellipse cx="61" cy="74" rx="6.5" ry="6" fill="url(#pinkDiamondGlow)" transform="rotate(30 61 74)"/>
+      <ellipse cx="58" cy="70" rx="2.5" ry="1.6" fill="rgba(255,240,248,0.72)" transform="rotate(-10 58 70)"/>
+      <circle cx="57" cy="69" r="1.1" fill="white" opacity="0.9"/>
+    </g>
+
+    <!-- PD6 — Lower right (~4 o'clock) -->
+    <g class="ring-pink-gem-2">
+      <ellipse cx="129" cy="74" rx="8" ry="7.5" fill="url(#settingGrad)" opacity="0.85" transform="rotate(-30 129 74)"/>
+      <ellipse cx="129" cy="74" rx="6.5" ry="6" fill="url(#pinkDiamond)" filter="url(#pinkglow)" transform="rotate(-30 129 74)"/>
+      <g clip-path="url(#pd6clip)" fill="none" stroke="rgba(255,180,210,0.6)" stroke-width="0.7">
+        <ellipse cx="129" cy="72" rx="3" ry="2.5" stroke="rgba(255,210,230,0.7)" transform="rotate(-30 129 72)"/>
+        <line x1="129" y1="68" x2="124" y2="72"/><line x1="129" y1="68" x2="134" y2="72"/>
+        <line x1="129" y1="80" x2="124" y2="76"/><line x1="129" y1="80" x2="134" y2="76"/>
+      </g>
+      <ellipse cx="129" cy="74" rx="6.5" ry="6" fill="url(#pinkDiamondGlow)" transform="rotate(-30 129 74)"/>
+      <ellipse cx="126" cy="70" rx="2.5" ry="1.6" fill="rgba(255,240,248,0.72)" transform="rotate(-40 126 70)"/>
+      <circle cx="125" cy="69" r="1.1" fill="white" opacity="0.9"/>
+    </g>
     <!-- Sparkle 1 — upper right -->
     <g class="ring-sparkle" style="transform-origin:148px 28px" filter="url(#sparkfilter)">
       <line x1="148" y1="20" x2="148" y2="36" stroke="#f0d898" stroke-width="1.5" stroke-linecap="round"/>
@@ -676,6 +794,23 @@ footer span{color:var(--pink-l);}
     <circle cx="128" cy="44" r="1.8" fill="#b0c8ff" class="ring-sparkle" style="transform-origin:128px 44px"/>
     <circle cx="58" cy="55" r="1.5" fill="#f0d898" class="ring-sparkle-2" style="transform-origin:58px 55px"/>
     <circle cx="140" cy="72" r="1.4" fill="#f5c2d0" class="ring-sparkle-3" style="transform-origin:140px 72px"/>
+    <!-- Pink diamond twinkle flashes -->
+    <g class="ring-sparkle" style="transform-origin:95px 25px" filter="url(#sparkfilter)">
+      <line x1="95" y1="21" x2="95" y2="29" stroke="#f5c2d0" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="91" y1="25" x2="99" y2="25" stroke="#f5c2d0" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+    <g class="ring-sparkle-3" style="transform-origin:95px 99px" filter="url(#sparkfilter)">
+      <line x1="95" y1="95" x2="95" y2="103" stroke="#e8829f" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="91" y1="99" x2="99" y2="99" stroke="#e8829f" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+    <g class="ring-sparkle-2" style="transform-origin:52px 50px" filter="url(#sparkfilter)">
+      <line x1="52" y1="46" x2="52" y2="54" stroke="#f5c2d0" stroke-width="1.1" stroke-linecap="round"/>
+      <line x1="48" y1="50" x2="56" y2="50" stroke="#f5c2d0" stroke-width="1.1" stroke-linecap="round"/>
+    </g>
+    <g class="ring-sparkle-4" style="transform-origin:138px 50px" filter="url(#sparkfilter)">
+      <line x1="138" y1="46" x2="138" y2="54" stroke="#f5c2d0" stroke-width="1.1" stroke-linecap="round"/>
+      <line x1="134" y1="50" x2="142" y2="50" stroke="#f5c2d0" stroke-width="1.1" stroke-linecap="round"/>
+    </g>
   </svg>
 
   <h2 class="q-title">Will You Be<br>My Girlfriend?</h2>
