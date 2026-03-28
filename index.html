@@ -191,6 +191,13 @@ footer span{color:var(--pink-l);}
 </head>
 <body>
 
+<!-- ── BACKGROUND MUSIC ── -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+  <source src="music.m4a" type="audio/mp4">
+  <source src="music.ogg" type="audio/ogg">
+</audio>
+
 <div class="petals" id="petals"></div>
 
 <!-- nav dots -->
@@ -494,7 +501,6 @@ footer span{color:var(--pink-l);}
   <!-- SAPPHIRE RING SVG -->
   <svg class="ring-svg ring-bob" viewBox="0 0 190 200" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <!-- Gold band gradients -->
       <linearGradient id="bandOuter" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%"   stop-color="#f0d898"/>
         <stop offset="22%"  stop-color="#c9a96e"/>
@@ -513,14 +519,12 @@ footer span{color:var(--pink-l);}
         <stop offset="70%"  stop-color="#b08838"/>
         <stop offset="100%" stop-color="#c9a96e"/>
       </linearGradient>
-      <!-- Setting gradients -->
       <linearGradient id="settingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%"   stop-color="#f0d898"/>
         <stop offset="35%"  stop-color="#c9a96e"/>
         <stop offset="65%"  stop-color="#9a7228"/>
         <stop offset="100%" stop-color="#d4a84a"/>
       </linearGradient>
-      <!-- Sapphire gradients -->
       <radialGradient id="sapphireDeep" cx="38%" cy="32%" r="62%">
         <stop offset="0%"   stop-color="#8ab8f8"/>
         <stop offset="18%"  stop-color="#4a82e8"/>
@@ -533,13 +537,11 @@ footer span{color:var(--pink-l);}
         <stop offset="40%"  stop-color="rgba(100,160,240,0.4)"/>
         <stop offset="100%" stop-color="rgba(10,40,120,0)"/>
       </radialGradient>
-      <!-- Prong gradient -->
       <linearGradient id="prongGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%"   stop-color="#f4e090"/>
         <stop offset="50%"  stop-color="#c9a96e"/>
         <stop offset="100%" stop-color="#9a7228"/>
       </linearGradient>
-      <!-- Glow filter -->
       <filter id="gemglow" x="-30%" y="-30%" width="160%" height="160%">
         <feGaussianBlur stdDeviation="3.5" result="blur"/>
         <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -552,11 +554,9 @@ footer span{color:var(--pink-l);}
         <feGaussianBlur stdDeviation="1" result="blur"/>
         <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
       </filter>
-      <!-- Clip for sapphire facets -->
       <clipPath id="gemClip">
         <ellipse cx="95" cy="62" rx="28" ry="26"/>
       </clipPath>
-      <!-- Pink diamond gradients -->
       <radialGradient id="pinkDiamond" cx="35%" cy="28%" r="60%">
         <stop offset="0%"   stop-color="#fde8ef"/>
         <stop offset="20%"  stop-color="#f5a8c0"/>
@@ -573,7 +573,6 @@ footer span{color:var(--pink-l);}
         <feGaussianBlur stdDeviation="2.2" result="blur"/>
         <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
       </filter>
-      <!-- Clip paths for each pink diamond -->
       <clipPath id="pd1clip"><ellipse cx="95" cy="33" rx="7.5" ry="6.5"/></clipPath>
       <clipPath id="pd2clip"><ellipse cx="95" cy="91" rx="7.5" ry="6.5"/></clipPath>
       <clipPath id="pd3clip"><ellipse cx="61" cy="50" rx="6" ry="6.5" transform="rotate(-30 61 50)"/></clipPath>
@@ -582,60 +581,33 @@ footer span{color:var(--pink-l);}
       <clipPath id="pd6clip"><ellipse cx="129" cy="74" rx="6" ry="6.5" transform="rotate(-30 129 74)"/></clipPath>
     </defs>
 
-    <!-- ── BAND BACK (the part behind the gem setting) ── -->
-    <!-- Back arc of band - left side -->
     <path d="M42 110 Q22 105 20 88 Q18 70 38 62 Q55 56 72 58"
           fill="none" stroke="url(#bandOuter)" stroke-width="14" stroke-linecap="round"/>
     <path d="M42 110 Q22 105 20 88 Q18 70 38 62 Q55 56 72 58"
           fill="none" stroke="url(#bandInner)" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
-
-    <!-- Back arc of band - right side -->
     <path d="M148 110 Q168 105 170 88 Q172 70 152 62 Q135 56 118 58"
           fill="none" stroke="url(#bandOuter)" stroke-width="14" stroke-linecap="round"/>
     <path d="M148 110 Q168 105 170 88 Q172 70 152 62 Q135 56 118 58"
           fill="none" stroke="url(#bandInner)" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
-
-    <!-- ── SETTING BASE — the mount that holds the stone ── -->
-    <!-- Outer setting collar -->
     <ellipse cx="95" cy="68" rx="40" ry="16" fill="url(#settingGrad)" opacity="0.9"/>
-    <!-- Setting side walls (left) -->
     <path d="M55 68 L52 88 Q55 96 68 98 L68 78 Z" fill="#c9a96e" opacity="0.85"/>
     <path d="M55 68 L52 88 Q55 96 68 98 L68 78 Z" fill="url(#bandFront)" opacity="0.4"/>
-    <!-- Setting side walls (right) -->
     <path d="M135 68 L138 88 Q135 96 122 98 L122 78 Z" fill="#c9a96e" opacity="0.85"/>
     <path d="M135 68 L138 88 Q135 96 122 98 L122 78 Z" fill="url(#bandFront)" opacity="0.4"/>
-    <!-- Setting bottom -->
     <path d="M68 78 L68 98 Q95 106 122 98 L122 78 Q95 86 68 78Z" fill="url(#settingGrad)" opacity="0.9"/>
-    <!-- Setting shine line -->
     <path d="M58 70 Q95 60 132 70" fill="none" stroke="rgba(255,240,180,0.55)" stroke-width="1.5" stroke-linecap="round" class="ring-band-shine"/>
-
-    <!-- ── BAND FRONT (in front of the stone, below) ── -->
-    <!-- Front band left -->
     <path d="M42 110 Q56 108 68 105 L68 95 Q56 98 42 102 Z" fill="url(#bandFront)"/>
-    <!-- Front band right -->
     <path d="M148 110 Q134 108 122 105 L122 95 Q134 98 148 102 Z" fill="url(#bandFront)"/>
-    <!-- Band bottom curve (the visible underside) -->
     <path d="M42 110 Q68 122 95 124 Q122 122 148 110 Q122 118 95 120 Q68 118 42 110Z"
           fill="url(#bandFront)" opacity="0.9"/>
     <path d="M42 110 Q68 122 95 124 Q122 122 148 110"
           fill="none" stroke="rgba(255,240,180,0.45)" stroke-width="1.2" class="ring-band-shine"/>
-    <!-- Band inner shadow -->
     <ellipse cx="95" cy="115" rx="46" ry="7" fill="rgba(80,40,0,0.28)"/>
-    <!-- Band inner highlight -->
     <path d="M50 110 Q95 118 140 110 Q95 114 50 110Z" fill="rgba(255,240,180,0.18)" class="ring-band-shine"/>
-
-    <!-- ── THE SAPPHIRE GEM ── -->
-    <!-- Gem glow halo -->
     <ellipse cx="95" cy="62" rx="34" ry="32" fill="rgba(40,80,200,0.22)" filter="url(#gemglow)" class="ring-gem-glow"/>
-
-    <!-- Main sapphire body -->
     <ellipse cx="95" cy="62" rx="28" ry="26" fill="url(#sapphireDeep)" filter="url(#gemglow)"/>
-
-    <!-- Facet lines — the cut geometry -->
     <g clip-path="url(#gemClip)" opacity="0.75" stroke="rgba(140,180,255,0.55)" stroke-width="0.8" fill="none">
-      <!-- Table facet (top flat) -->
       <ellipse cx="95" cy="58" rx="14" ry="11" stroke="rgba(180,210,255,0.7)" stroke-width="1"/>
-      <!-- Star facets from center -->
       <line x1="95" y1="47" x2="81" y2="58"/>
       <line x1="95" y1="47" x2="109" y2="58"/>
       <line x1="95" y1="47" x2="95" y2="38"/>
@@ -646,49 +618,27 @@ footer span{color:var(--pink-l);}
       <line x1="95" y1="69" x2="95" y2="80"/>
       <line x1="81" y1="58" x2="72" y2="74"/>
       <line x1="109" y1="58" x2="118" y2="74"/>
-      <!-- Girdle edges -->
       <line x1="67" y1="62" x2="72" y2="74"/>
       <line x1="123" y1="62" x2="118" y2="74"/>
       <line x1="72" y1="74" x2="95" y2="80"/>
       <line x1="118" y1="74" x2="95" y2="80"/>
     </g>
-
-    <!-- Sapphire glow overlay -->
     <ellipse cx="95" cy="62" rx="28" ry="26" fill="url(#sapphireGlow)" class="ring-gem-glow"/>
-
-    <!-- Primary highlight — the bright streak -->
     <ellipse cx="86" cy="52" rx="9" ry="5.5" fill="rgba(220,235,255,0.72)" transform="rotate(-20 86 52)" filter="url(#softglow)" class="ring-gem-glow"/>
-    <!-- Secondary highlight -->
     <ellipse cx="84" cy="50" rx="4" ry="2.5" fill="rgba(255,255,255,0.88)" transform="rotate(-22 84 50)" class="ring-gem-glow"/>
-    <!-- Tiny sparkle point -->
     <circle cx="82" cy="49" r="1.8" fill="white" opacity="0.95" class="ring-gem-glow"/>
-
-    <!-- Depth reflection in lower gem -->
     <ellipse cx="106" cy="73" rx="7" ry="4" fill="rgba(80,120,220,0.35)" transform="rotate(10 106 73)"/>
-
-    <!-- ── PRONGS (4 prongs holding the stone) ── -->
-    <!-- Top-left prong -->
     <path d="M71 46 Q69 40 73 37 Q77 38 76 44 Q75 52 72 56 Z" fill="url(#prongGrad)"/>
     <path d="M71 46 Q69 40 73 37 Q77 38 76 44 Q75 52 72 56 Z" fill="rgba(255,240,180,0.3)" class="ring-band-shine"/>
-    <!-- Top-right prong -->
     <path d="M119 46 Q121 40 117 37 Q113 38 114 44 Q115 52 118 56 Z" fill="url(#prongGrad)"/>
     <path d="M119 46 Q121 40 117 37 Q113 38 114 44 Q115 52 118 56 Z" fill="rgba(255,240,180,0.3)" class="ring-band-shine"/>
-    <!-- Bottom-left prong -->
     <path d="M71 78 Q69 84 73 87 Q77 86 76 80 Q75 72 72 68 Z" fill="url(#prongGrad)"/>
-    <!-- Bottom-right prong -->
     <path d="M119 78 Q121 84 117 87 Q113 86 114 80 Q115 72 118 68 Z" fill="url(#prongGrad)"/>
-
-    <!-- Prong tips — small gold caps -->
     <ellipse cx="72" cy="37" rx="4.5" ry="3" fill="#f4e090"/>
     <ellipse cx="118" cy="37" rx="4.5" ry="3" fill="#f4e090"/>
     <ellipse cx="72" cy="87" rx="4.5" ry="3" fill="#f4e090"/>
     <ellipse cx="118" cy="87" rx="4.5" ry="3" fill="#f4e090"/>
 
-    <!-- ── PINK DIAMOND SIDE STONES ── -->
-    <!-- 6 pink diamonds orbiting the sapphire in gold bezel settings -->
-    <!-- Each: gold bezel collar → diamond body → facets → highlight -->
-
-    <!-- PD1 — Top center (12 o'clock) -->
     <g class="ring-pink-gem">
       <ellipse cx="95" cy="33" rx="9" ry="8" fill="url(#settingGrad)" opacity="0.85"/>
       <ellipse cx="95" cy="33" rx="7.5" ry="6.5" fill="url(#pinkDiamond)" filter="url(#pinkglow)"/>
@@ -702,8 +652,6 @@ footer span{color:var(--pink-l);}
       <ellipse cx="91" cy="29" rx="3" ry="2" fill="rgba(255,240,248,0.75)" transform="rotate(-15 91 29)"/>
       <circle cx="90" cy="28" r="1.2" fill="white" opacity="0.9"/>
     </g>
-
-    <!-- PD2 — Bottom center (6 o'clock) -->
     <g class="ring-pink-gem-2">
       <ellipse cx="95" cy="91" rx="9" ry="8" fill="url(#settingGrad)" opacity="0.85"/>
       <ellipse cx="95" cy="91" rx="7.5" ry="6.5" fill="url(#pinkDiamond)" filter="url(#pinkglow)"/>
@@ -717,8 +665,6 @@ footer span{color:var(--pink-l);}
       <ellipse cx="91" cy="87" rx="3" ry="2" fill="rgba(255,240,248,0.75)" transform="rotate(-15 91 87)"/>
       <circle cx="90" cy="86" r="1.2" fill="white" opacity="0.9"/>
     </g>
-
-    <!-- PD3 — Upper left (~10 o'clock) -->
     <g class="ring-pink-gem-3">
       <ellipse cx="61" cy="50" rx="8" ry="7.5" fill="url(#settingGrad)" opacity="0.85" transform="rotate(-30 61 50)"/>
       <ellipse cx="61" cy="50" rx="6.5" ry="6" fill="url(#pinkDiamond)" filter="url(#pinkglow)" transform="rotate(-30 61 50)"/>
@@ -731,8 +677,6 @@ footer span{color:var(--pink-l);}
       <ellipse cx="58" cy="46" rx="2.5" ry="1.6" fill="rgba(255,240,248,0.72)" transform="rotate(-40 58 46)"/>
       <circle cx="57" cy="45" r="1.1" fill="white" opacity="0.9"/>
     </g>
-
-    <!-- PD4 — Upper right (~2 o'clock) -->
     <g class="ring-pink-gem-4">
       <ellipse cx="129" cy="50" rx="8" ry="7.5" fill="url(#settingGrad)" opacity="0.85" transform="rotate(30 129 50)"/>
       <ellipse cx="129" cy="50" rx="6.5" ry="6" fill="url(#pinkDiamond)" filter="url(#pinkglow)" transform="rotate(30 129 50)"/>
@@ -745,8 +689,6 @@ footer span{color:var(--pink-l);}
       <ellipse cx="126" cy="46" rx="2.5" ry="1.6" fill="rgba(255,240,248,0.72)" transform="rotate(-10 126 46)"/>
       <circle cx="125" cy="45" r="1.1" fill="white" opacity="0.9"/>
     </g>
-
-    <!-- PD5 — Lower left (~8 o'clock) -->
     <g class="ring-pink-gem">
       <ellipse cx="61" cy="74" rx="8" ry="7.5" fill="url(#settingGrad)" opacity="0.85" transform="rotate(30 61 74)"/>
       <ellipse cx="61" cy="74" rx="6.5" ry="6" fill="url(#pinkDiamond)" filter="url(#pinkglow)" transform="rotate(30 61 74)"/>
@@ -759,8 +701,6 @@ footer span{color:var(--pink-l);}
       <ellipse cx="58" cy="70" rx="2.5" ry="1.6" fill="rgba(255,240,248,0.72)" transform="rotate(-10 58 70)"/>
       <circle cx="57" cy="69" r="1.1" fill="white" opacity="0.9"/>
     </g>
-
-    <!-- PD6 — Lower right (~4 o'clock) -->
     <g class="ring-pink-gem-2">
       <ellipse cx="129" cy="74" rx="8" ry="7.5" fill="url(#settingGrad)" opacity="0.85" transform="rotate(-30 129 74)"/>
       <ellipse cx="129" cy="74" rx="6.5" ry="6" fill="url(#pinkDiamond)" filter="url(#pinkglow)" transform="rotate(-30 129 74)"/>
@@ -773,30 +713,26 @@ footer span{color:var(--pink-l);}
       <ellipse cx="126" cy="70" rx="2.5" ry="1.6" fill="rgba(255,240,248,0.72)" transform="rotate(-40 126 70)"/>
       <circle cx="125" cy="69" r="1.1" fill="white" opacity="0.9"/>
     </g>
-    <!-- Sparkle 1 — upper right -->
+
     <g class="ring-sparkle" style="transform-origin:148px 28px" filter="url(#sparkfilter)">
       <line x1="148" y1="20" x2="148" y2="36" stroke="#f0d898" stroke-width="1.5" stroke-linecap="round"/>
       <line x1="140" y1="28" x2="156" y2="28" stroke="#f0d898" stroke-width="1.5" stroke-linecap="round"/>
       <line x1="142" y1="22" x2="154" y2="34" stroke="rgba(240,216,152,0.55)" stroke-width="1" stroke-linecap="round"/>
       <line x1="154" y1="22" x2="142" y2="34" stroke="rgba(240,216,152,0.55)" stroke-width="1" stroke-linecap="round"/>
     </g>
-    <!-- Sparkle 2 — upper left -->
     <g class="ring-sparkle-2" style="transform-origin:38px 38px" filter="url(#sparkfilter)">
       <line x1="38" y1="30" x2="38" y2="46" stroke="#b0c8ff" stroke-width="1.4" stroke-linecap="round"/>
       <line x1="30" y1="38" x2="46" y2="38" stroke="#b0c8ff" stroke-width="1.4" stroke-linecap="round"/>
       <line x1="32" y1="32" x2="44" y2="44" stroke="rgba(176,200,255,0.5)" stroke-width="0.9" stroke-linecap="round"/>
       <line x1="44" y1="32" x2="32" y2="44" stroke="rgba(176,200,255,0.5)" stroke-width="0.9" stroke-linecap="round"/>
     </g>
-    <!-- Sparkle 3 — right mid -->
     <g class="ring-sparkle-3" style="transform-origin:166px 80px" filter="url(#sparkfilter)">
       <line x1="166" y1="74" x2="166" y2="86" stroke="#f5c2d0" stroke-width="1.3" stroke-linecap="round"/>
       <line x1="160" y1="80" x2="172" y2="80" stroke="#f5c2d0" stroke-width="1.3" stroke-linecap="round"/>
     </g>
-    <!-- Tiny gem twinkle dots -->
     <circle cx="128" cy="44" r="1.8" fill="#b0c8ff" class="ring-sparkle" style="transform-origin:128px 44px"/>
     <circle cx="58" cy="55" r="1.5" fill="#f0d898" class="ring-sparkle-2" style="transform-origin:58px 55px"/>
     <circle cx="140" cy="72" r="1.4" fill="#f5c2d0" class="ring-sparkle-3" style="transform-origin:140px 72px"/>
-    <!-- Pink diamond twinkle flashes -->
     <g class="ring-sparkle" style="transform-origin:95px 25px" filter="url(#sparkfilter)">
       <line x1="95" y1="21" x2="95" y2="29" stroke="#f5c2d0" stroke-width="1.2" stroke-linecap="round"/>
       <line x1="91" y1="25" x2="99" y2="25" stroke="#f5c2d0" stroke-width="1.2" stroke-linecap="round"/>
@@ -838,6 +774,20 @@ footer span{color:var(--pink-l);}
 </footer>
 
 <script>
+// ── BACKGROUND MUSIC ──
+const bgMusic = document.getElementById('bgMusic');
+bgMusic.volume = 0.6;
+
+bgMusic.play().catch(() => {
+  const startMusic = () => {
+    bgMusic.play();
+  };
+  document.addEventListener('click', startMusic, { once: true });
+  document.addEventListener('touchstart', startMusic, { once: true });
+  document.addEventListener('scroll', startMusic, { once: true });
+});
+
+// ── PETALS ──
 const pl = document.getElementById('petals');
 const pc = ['#f5c2d0','#e8829f','#d4547a','#a8d5b5','#5a9b6e','#fde8ef','#e8d4f5','#f0d898'];
 for(let i=0;i<36;i++){
@@ -846,6 +796,8 @@ for(let i=0;i<36;i++){
   p.style.cssText=`left:${Math.random()*100}%;width:${s}px;height:${s*.65}px;background:${pc[~~(Math.random()*pc.length)]};animation-duration:${7+Math.random()*12}s;animation-delay:${Math.random()*10}s;border-radius:${Math.random()>.5?'50% 0 50% 0':'60% 40% 70% 30%'};`;
   pl.appendChild(p);
 }
+
+// ── NAV DOTS ──
 const sEls = [document.querySelector('.hero'),...['s1','s2','s3','s4','s5','s6'].map(id=>document.getElementById(id))];
 const dots = document.querySelectorAll('.nd');
 window.addEventListener('scroll',()=>{
@@ -854,10 +806,14 @@ window.addEventListener('scroll',()=>{
   sEls.forEach((el,i)=>{if(el&&el.offsetTop<=y)cur=i;});
   dots.forEach((d,i)=>{d.classList.toggle('active',i===cur);});
 });
+
+// ── FLEE BUTTON ──
 function flee(btn){
   const mx=window.innerWidth-195,my=window.innerHeight-78;
   btn.style.cssText+=`;position:fixed;left:${Math.random()*mx}px;top:${Math.random()*my}px;z-index:50;transition:left .35s ease,top .35s ease;`;
 }
+
+// ── YES BUTTON ──
 function sayYes(){
   const cols=['#d4547a','#e8829f','#5a9b6e','#f9c856','#a8d5b5','#fde8ef','#c9a96e','#e87098','#b090d0','#90c0a0'];
   for(let i=0;i<120;i++){
