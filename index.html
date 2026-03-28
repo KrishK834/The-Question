@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Question For You 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink:     #c94b7a;
+  --pink-m:   #e07fa0;
+  --pink-l:   #f5c2d0;
+  --blush:    #fde8ef;
+  --green:    #2d5a3d;
+  --green-m:  #4a8a5e;
+  --green-l:  #a8d5b5;
+  --green-p:  #dff0e6;
+  --cream:    #faf5f0;
+  --dark:     #180f14;
+  --plum:     #3d1a5e;
+  --gold:     #c9a96e;
+  --gold-l:   #f0d898;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);font-family:'Cormorant Garamond',serif;overflow-x:hidden;color:#444;}
+
+/* ── PETALS ── */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.p{position:absolute;top:-50px;animation:pfall linear infinite;opacity:.65;}
+@keyframes pfall{0%{transform:translateY(0) rotate(0deg) translateX(0);opacity:.7}50%{transform:translateY(48vh) rotate(190deg) translateX(32px)}100%{transform:translateY(108vh) rotate(380deg) translateX(-18px);opacity:0}}
+
+/* ── NAV dots ── */
+.nav{position:fixed;right:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:50;}
+.nd{width:8px;height:8px;border-radius:50%;background:var(--pink-l);border:1.5px solid var(--pink);cursor:pointer;transition:background .25s,transform .25s;}
+.nd.active,.nd:hover{background:var(--pink);transform:scale(1.3);}
+
+/* ── HERO ── */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 24px 70px;text-align:center;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 18% 20%,rgba(201,75,122,.14) 0%,transparent 52%),
+    radial-gradient(ellipse at 82% 78%,rgba(74,138,94,.12) 0%,transparent 52%),
+    radial-gradient(ellipse at 55% 50%,rgba(201,169,110,.05) 0%,transparent 65%),
+    var(--cream);}
+.hero::before{content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(201,75,122,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,75,122,.04) 1px,transparent 1px);
+  background-size:48px 48px;pointer-events:none;z-index:0;}
+.hero>*{position:relative;z-index:1;}
+
+.lily-hero{width:230px;margin-bottom:30px;animation:bob 4.2s ease-in-out infinite;filter:drop-shadow(0 12px 32px rgba(201,75,122,.28));}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+
+.eyebrow{font-size:.78rem;letter-spacing:.42em;text-transform:uppercase;color:var(--green-m);margin-bottom:18px;animation:fd 1.2s ease both;}
+.h-title{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,8vw,6.5rem);color:var(--pink);line-height:1.04;animation:fd 1.4s ease both;text-shadow:0 2px 36px rgba(201,75,122,.13);}
+.h-title em{font-style:italic;color:var(--green);}
+.h-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(1.05rem,2.5vw,1.42rem);color:#999;margin-top:16px;margin-bottom:48px;animation:fd 1.6s ease both;line-height:1.7;}
+@keyframes fd{from{opacity:0;transform:translateY(-26px)}to{opacity:1;transform:translateY(0)}}
+
+.div-row{display:flex;align-items:center;gap:14px;margin:0 0 48px;}
+.dl{width:72px;height:1px;background:linear-gradient(to right,transparent,var(--pink-m));}
+.dr{width:72px;height:1px;background:linear-gradient(to left,transparent,var(--pink-m));}
+.dm{width:7px;height:7px;border-radius:50%;background:var(--pink-m);}
+
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:var(--pink-m);font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:5px;animation:nudge 2.2s ease-in-out infinite;}
+@keyframes nudge{0%,100%{transform:translateX(-50%) translateY(0);opacity:.5}50%{transform:translateX(-50%) translateY(6px);opacity:1}}
+
+/* ── SECTIONS ── */
+section{position:relative;z-index:1;padding:96px 24px;}
+.w{max-width:840px;margin:0 auto;text-align:center;}
+.sl{font-size:.76rem;letter-spacing:.42em;text-transform:uppercase;color:var(--green-m);margin-bottom:20px;display:block;}
+.st{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);color:var(--pink);margin-bottom:26px;line-height:1.18;}
+.sb{font-size:clamp(1.05rem,2vw,1.26rem);color:#6e6e6e;line-height:2;font-weight:300;}
+.blob{position:absolute;border-radius:50%;filter:blur(72px);pointer-events:none;}
+
+/* ── HER THINGS ── */
+.things-sec{background:white;overflow:hidden;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:22px;margin-top:48px;}
+.card{background:var(--cream);border-radius:20px;padding:34px 26px;border:1px solid var(--pink-l);box-shadow:0 4px 26px rgba(201,75,122,.07);transition:transform .32s,box-shadow .32s;position:relative;overflow:hidden;}
+.card::after{content:'';position:absolute;bottom:-28px;left:-28px;width:86px;height:86px;border-radius:50%;background:var(--green-p);opacity:.55;}
+.card:hover{transform:translateY(-8px);box-shadow:0 16px 46px rgba(201,75,122,.17);}
+.ci{font-size:2.1rem;margin-bottom:12px;display:block;}
+.ct{font-family:'Playfair Display',serif;font-size:1.08rem;color:var(--pink);margin-bottom:8px;}
+.cx{font-size:.93rem;color:#999;line-height:1.72;}
+
+/* ── EYES ── */
+.eyes-sec{
+  background:linear-gradient(155deg,#12080e 0%,#1e0e2a 45%,#0a1510 100%);
+  padding:96px 24px;text-align:center;overflow:hidden;position:relative;}
+.eyes-sec .sl{color:var(--pink-l);}
+.eyes-sec .st{color:var(--pink-l);}
+.eyes-sec .sb{color:rgba(255,255,255,.68);}
+.eye-svg{width:210px;margin:0 auto 38px;display:block;}
+.iris-g{animation:eyemove 5.5s ease-in-out infinite;}
+@keyframes eyemove{0%,100%{transform:translate(0,0)}20%{transform:translate(4px,-2px)}45%{transform:translate(-3px,3px)}65%{transform:translate(5px,1px)}85%{transform:translate(-2px,-3px)}}
+.lid-g{animation:blink 7s ease-in-out infinite;transform-origin:center;}
+@keyframes blink{0%,91%,100%{transform:scaleY(1)}95%{transform:scaleY(0.04)}}
+.glimmer{animation:glimmer 3s ease-in-out infinite;}
+@keyframes glimmer{0%,100%{opacity:.6}50%{opacity:1}}
+.eye-quote{font-family:'IM Fell English',serif;font-style:italic;font-size:1.05rem;color:rgba(245,194,208,.45);margin-top:34px;line-height:2;letter-spacing:.06em;}
+
+/* ── FLOWERS ── */
+.flowers-sec{background:linear-gradient(135deg,var(--green) 0%,#1c3d28 100%);padding:96px 24px;overflow:hidden;}
+.flowers-sec .sl{color:var(--green-l);}
+.flowers-sec .st{color:white;}
+.flowers-sec .sb{color:rgba(255,255,255,.74);}
+.fl-row{display:flex;justify-content:center;gap:52px;flex-wrap:wrap;margin-top:52px;}
+.fl-item{text-align:center;}
+.fl-label{font-family:'Playfair Display',serif;font-style:italic;color:var(--pink-l);font-size:1.05rem;margin-top:14px;}
+.fl-sub{font-size:.86rem;color:rgba(255,255,255,.48);margin-top:4px;font-style:italic;}
+
+/* ── CRABS ── */
+.crab-sec{background:#fff9f5;overflow:hidden;}
+.crab-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:46px;}
+.crab-b{background:linear-gradient(135deg,var(--blush),var(--green-p));border-radius:24px;padding:30px 26px;text-align:center;border:1px solid var(--pink-l);min-width:180px;box-shadow:0 4px 22px rgba(201,75,122,.08);transition:transform .3s;}
+.crab-b:hover{transform:translateY(-6px) rotate(-1.5deg);}
+.cbi{font-size:3rem;display:block;margin-bottom:10px;animation:wiggle 2.3s ease-in-out infinite;}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.cbl{font-family:'Playfair Display',serif;color:var(--pink);font-size:1.02rem;}
+.cbn{font-size:.89rem;color:#aaa;margin-top:5px;line-height:1.6;}
+
+/* ── SMILE SECTION ── */
+.smile-sec{
+  background:linear-gradient(155deg,#12080e 0%,#2a0a18 45%,#14080e 100%);
+  padding:96px 24px;text-align:center;overflow:hidden;position:relative;
+}
+.smile-sec .sl{color:var(--pink-l);}
+.smile-sec .st{color:var(--pink-l);}
+.smile-sec .sb{color:rgba(255,255,255,.68);}
+.smile-svg{width:260px;margin:0 auto 38px;display:block;}
+.smile-curl-g{animation:smileshift 6s ease-in-out infinite;}
+@keyframes smileshift{0%,100%{transform:translateY(0)}30%{transform:translateY(-3px)}70%{transform:translateY(2px)}}
+.smile-dimple-l{animation:dimpleL 6s ease-in-out infinite;}
+.smile-dimple-r{animation:dimpleR 6s ease-in-out infinite;}
+@keyframes dimpleL{0%,100%{opacity:.4}30%{opacity:.75}70%{opacity:.5}}
+@keyframes dimpleR{0%,100%{opacity:.4}30%{opacity:.5}70%{opacity:.75}}
+.smile-glow{animation:sglow 4s ease-in-out infinite;}
+@keyframes sglow{0%,100%{opacity:.45}50%{opacity:.75}}
+.smile-quote{font-family:'IM Fell English',serif;font-style:italic;font-size:1.05rem;color:rgba(245,194,208,.45);margin-top:34px;line-height:2;letter-spacing:.06em;}
+
+/* ── THE QUESTION ── */
+.q-sec{background:radial-gradient(ellipse at 32% 28%,rgba(201,75,122,.14) 0%,transparent 58%),radial-gradient(ellipse at 72% 72%,rgba(61,26,94,.1) 0%,transparent 58%),var(--blush);padding:110px 24px;text-align:center;overflow:hidden;}
+.lotus-q{width:160px;margin:0 auto 40px;animation:bob 3.8s ease-in-out infinite;filter:drop-shadow(0 10px 32px rgba(201,75,122,.32));}
+.q-title{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,7.5vw,5.4rem);color:var(--pink);line-height:1.08;font-style:italic;margin-bottom:20px;}
+.q-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:1.18rem;color:var(--green);margin-bottom:12px;}
+.q-whisper{font-size:.82rem;color:rgba(61,26,94,.45);letter-spacing:.2em;text-transform:uppercase;margin-bottom:56px;}
+
+.btn-row{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;}
+.btn-yes{background:linear-gradient(135deg,var(--pink),#9e2858);color:white;border:none;padding:18px 58px;font-family:'Playfair Display',serif;font-size:1.3rem;border-radius:50px;cursor:pointer;box-shadow:0 8px 34px rgba(201,75,122,.42);transition:transform .25s,box-shadow .25s;letter-spacing:.04em;}
+.btn-yes:hover{transform:scale(1.07) translateY(-4px);box-shadow:0 18px 58px rgba(201,75,122,.58);}
+.btn-no{background:transparent;border:1.5px solid var(--green-m);color:var(--green);padding:18px 44px;font-family:'Cormorant Garamond',serif;font-size:1.12rem;border-radius:50px;cursor:pointer;transition:opacity .2s;}
+.btn-no:hover{opacity:.18;}
+
+/* ── CELEBRATION ── */
+.celeb{display:none;position:fixed;inset:0;z-index:200;background:linear-gradient(160deg,rgba(253,232,239,.97),rgba(224,242,231,.97));flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;}
+.celeb.on{display:flex;animation:cin .6s ease both;}
+@keyframes cin{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.ci2{font-size:4.5rem;margin-bottom:24px;animation:hb 1s infinite;}
+@keyframes hb{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+.ch{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,7vw,5rem);color:var(--pink);font-style:italic;margin-bottom:20px;}
+.cp{font-size:1.22rem;color:var(--green);max-width:530px;line-height:1.92;}
+.cn{margin-top:22px;font-size:.94rem;color:rgba(61,26,94,.55);font-style:italic;}
+.conf{position:fixed;pointer-events:none;z-index:300;border-radius:3px;animation:cf 3s ease-in forwards;}
+@keyframes cf{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+/* ── FOOTER ── */
+footer{background:var(--green);color:rgba(255,255,255,.52);text-align:center;padding:30px 20px;font-size:.84rem;letter-spacing:.1em;position:relative;z-index:1;}
+footer span{color:var(--pink-l);}
+
+@media(max-width:540px){.fl-row{gap:26px;}.btn-row{flex-direction:column;align-items:center;}}
+</style>
+</head>
+<body>
+
+<div class="petals" id="petals"></div>
+
+<!-- nav dots -->
+<nav class="nav" id="nav">
+  <div class="nd active" onclick="scrollTo(0)" title="Home"></div>
+  <div class="nd" onclick="document.getElementById('s1').scrollIntoView({behavior:'smooth'})" title="About Her"></div>
+  <div class="nd" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})" title="Her Eyes"></div>
+  <div class="nd" onclick="document.getElementById('s3').scrollIntoView({behavior:'smooth'})" title="Flowers"></div>
+  <div class="nd" onclick="document.getElementById('s4').scrollIntoView({behavior:'smooth'})" title="Crabs"></div>
+  <div class="nd" onclick="document.getElementById('s5').scrollIntoView({behavior:'smooth'})" title="Her Smile"></div>
+  <div class="nd" onclick="document.getElementById('s6').scrollIntoView({behavior:'smooth'})" title="The Question"></div>
+</nav>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero">
+  <svg class="lily-hero" viewBox="0 0 230 295" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="pg1" cx="40%" cy="35%" r="60%"><stop offset="0%" stop-color="#f07098"/><stop offset="100%" stop-color="#c03060"/></radialGradient>
+      <radialGradient id="pg2" cx="40%" cy="35%" r="60%"><stop offset="0%" stop-color="#e86090"/><stop offset="100%" stop-color="#b02858"/></radialGradient>
+    </defs>
+    <path d="M115 290 Q110 238 113 192" stroke="#3a6b4a" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M115 290 Q125 242 130 205" stroke="#4a8a5e" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <path d="M115 290 Q102 244 96 208"  stroke="#4a8a5e" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <path d="M113 245 Q88 228 82 212" stroke="#3a6b4a" stroke-width="1.5" fill="#5a9b6e" opacity=".8"/>
+    <path d="M118 228 Q143 213 148 200" stroke="#3a6b4a" stroke-width="1.5" fill="#5a9b6e" opacity=".8"/>
+    <path d="M112 260 Q92 250 88 240"  stroke="#3a6b4a" stroke-width="1.2" fill="#4a8a5e" opacity=".6"/>
+    <ellipse cx="113" cy="135" rx="12" ry="44" fill="url(#pg1)" opacity=".94" transform="rotate(0 113 135)"/>
+    <ellipse cx="113" cy="135" rx="12" ry="44" fill="url(#pg2)" opacity=".88" transform="rotate(60 113 135)"/>
+    <ellipse cx="113" cy="135" rx="12" ry="44" fill="url(#pg1)" opacity=".88" transform="rotate(120 113 135)"/>
+    <ellipse cx="113" cy="135" rx="12" ry="44" fill="url(#pg2)" opacity=".86" transform="rotate(180 113 135)"/>
+    <ellipse cx="113" cy="135" rx="12" ry="44" fill="url(#pg1)" opacity=".86" transform="rotate(240 113 135)"/>
+    <ellipse cx="113" cy="135" rx="12" ry="44" fill="url(#pg2)" opacity=".88" transform="rotate(300 113 135)"/>
+    <circle cx="113" cy="118" r="2.5" fill="#5a0018" opacity=".6"/>
+    <circle cx="122" cy="127" r="2"   fill="#5a0018" opacity=".55"/>
+    <circle cx="103" cy="124" r="2"   fill="#5a0018" opacity=".55"/>
+    <circle cx="118" cy="110" r="2.2" fill="#5a0018" opacity=".5"/>
+    <circle cx="107" cy="112" r="1.8" fill="#5a0018" opacity=".5"/>
+    <line x1="113" y1="135" x2="113" y2="102" stroke="#4a8a5e" stroke-width="1.4"/>
+    <line x1="113" y1="135" x2="126" y2="106" stroke="#4a8a5e" stroke-width="1.4"/>
+    <line x1="113" y1="135" x2="99"  y2="105" stroke="#4a8a5e" stroke-width="1.4"/>
+    <line x1="113" y1="135" x2="130" y2="122" stroke="#4a8a5e" stroke-width="1.4"/>
+    <line x1="113" y1="135" x2="95"  y2="120" stroke="#4a8a5e" stroke-width="1.4"/>
+    <circle cx="113" cy="102" r="3.5" fill="#c9a96e"/>
+    <circle cx="126" cy="106" r="3"   fill="#c9a96e"/>
+    <circle cx="99"  cy="105" r="3"   fill="#c9a96e"/>
+    <circle cx="130" cy="122" r="2.8" fill="#c9a96e"/>
+    <circle cx="95"  cy="120" r="2.8" fill="#c9a96e"/>
+    <ellipse cx="84" cy="170" rx="9" ry="30" fill="#f07098" opacity=".9"  transform="rotate(-16 84 170)"/>
+    <ellipse cx="84" cy="170" rx="9" ry="30" fill="#d95888" opacity=".84" transform="rotate(44 84 170)"/>
+    <ellipse cx="84" cy="170" rx="9" ry="30" fill="#f07098" opacity=".84" transform="rotate(104 84 170)"/>
+    <circle cx="85" cy="156" r="1.8" fill="#5a0018" opacity=".55"/>
+    <line x1="84" y1="170" x2="78" y2="148" stroke="#4a8a5e" stroke-width="1.1"/>
+    <circle cx="78" cy="148" r="2.5" fill="#c9a96e"/>
+    <ellipse cx="148" cy="165" rx="9" ry="30" fill="#f07098" opacity=".9"  transform="rotate(16 148 165)"/>
+    <ellipse cx="148" cy="165" rx="9" ry="30" fill="#d95888" opacity=".84" transform="rotate(76 148 165)"/>
+    <ellipse cx="148" cy="165" rx="9" ry="30" fill="#f07098" opacity=".84" transform="rotate(136 148 165)"/>
+    <line x1="148" y1="165" x2="154" y2="143" stroke="#4a8a5e" stroke-width="1.1"/>
+    <circle cx="154" cy="143" r="2.5" fill="#c9a96e"/>
+    <path d="M104 288 Q115 277 126 288" stroke="#e07fa0" stroke-width="2.4" fill="none"/>
+    <path d="M115 282 Q96 271 90 278" stroke="#e07fa0" stroke-width="1.8" fill="rgba(224,127,160,.25)"/>
+    <path d="M115 282 Q134 271 140 278" stroke="#e07fa0" stroke-width="1.8" fill="rgba(224,127,160,.25)"/>
+    <circle cx="115" cy="282" r="4" fill="#d4547a"/>
+  </svg>
+
+  <p class="eyebrow">✦ A Heartfelt Proposal ✦</p>
+  <h1 class="h-title">For the One Who<br>Blooms <em>My World</em></h1>
+  <div class="div-row"><div class="dl"></div><div class="dm"></div><div class="dr"></div></div>
+  <p class="h-sub">Like a lotus through still water —<br>quietly, beautifully, and completely.</p>
+
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <svg width="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ══════════════════════════ HER THINGS ══════════════════════════ -->
+<section class="things-sec" id="s1">
+  <div class="blob" style="width:340px;height:340px;background:var(--blush);top:-80px;right:-80px;opacity:.6;z-index:0;"></div>
+  <div class="blob" style="width:270px;height:270px;background:var(--green-p);bottom:-60px;left:-60px;opacity:.6;z-index:0;"></div>
+  <div class="w" style="position:relative;z-index:1;">
+    <span class="sl">🌸 A Map of Her World</span>
+    <h2 class="st">Everything I Love<br>About You</h2>
+    <p class="sb">Every little thing you cherish makes me adore you more. A small, tender atlas of your beautiful world.</p>
+    <div class="grid">
+      <div class="card"><span class="ci">🌷</span><div class="ct">Pink Tiger Lilies</div><div class="cx">Bold, spotted, and unapologetically vivid — like you.</div></div>
+      <div class="card"><span class="ci">🪷</span><div class="ct">Lotus Gardens</div><div class="cx">Serene and ancient, blooming from stillness itself.</div></div>
+      <div class="card"><span class="ci">🦀</span><div class="ct">Steamed Crabs</div><div class="cx">The truest love language. You know how to savour life.</div></div>
+      <div class="card"><span class="ci">👁️</span><div class="ct">Those Dark Eyes</div><div class="cx">Almost black, infinite — the most beautiful thing I've been lost in.</div></div>
+      <div class="card"><span class="ci">🌀</span><div class="ct">Cosmic Wonder</div><div class="cx">You find beauty in things most people find frightening. That's a gift.</div></div>
+      <div class="card"><span class="ci">🎭</span><div class="ct">Stories & Worlds</div><div class="cx">Greek gods, titans, circuses & cryptids — your imagination is boundless.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ HER EYES ══════════════════════════ -->
+<section class="eyes-sec" id="s2">
+  <div class="blob" style="width:350px;height:350px;background:rgba(61,26,94,.55);top:-90px;left:-90px;z-index:0;animation:none;"></div>
+  <div class="blob" style="width:240px;height:240px;background:rgba(201,75,122,.22);bottom:-70px;right:-50px;z-index:0;"></div>
+
+  <svg class="eye-svg" viewBox="0 0 210 116" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="ew" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f5ecf2"/><stop offset="100%" stop-color="#e0d0de"/></radialGradient>
+      <radialGradient id="ig" cx="40%" cy="35%" r="55%"><stop offset="0%" stop-color="#28122e"/><stop offset="100%" stop-color="#07040e"/></radialGradient>
+      <filter id="glo"><feGaussianBlur stdDeviation="2.5" result="cb"/><feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <clipPath id="ec"><ellipse cx="105" cy="58" rx="84" ry="44"/></clipPath>
+    </defs>
+    <ellipse cx="105" cy="58" rx="84" ry="44" fill="url(#ew)"/>
+    <g class="iris-g" clip-path="url(#ec)">
+      <circle cx="105" cy="58" r="33" fill="url(#ig)"/>
+      <circle cx="105" cy="58" r="21" fill="#040208"/>
+      <circle cx="105" cy="58" r="31" fill="none" stroke="rgba(80,30,100,.5)" stroke-width="1.5"/>
+      <circle cx="92"  cy="47" r="6.5" fill="white" opacity=".08"/>
+      <circle cx="91"  cy="46" r="2.5" fill="white" opacity=".65" filter="url(#glo)" class="glimmer"/>
+      <circle cx="114" cy="65" r="1.8" fill="white" opacity=".3"/>
+    </g>
+    <g class="lid-g">
+      <path d="M21 58 Q105 12 189 58" fill="#180f14"/>
+      <path d="M21 58 Q105 104 189 58" fill="#180f14"/>
+    </g>
+    <g opacity=".78" stroke="#180f14" stroke-width="1.7" stroke-linecap="round">
+      <line x1="42"  y1="37" x2="37"  y2="26"/>
+      <line x1="60"  y1="26" x2="57"  y2="15"/>
+      <line x1="80"  y1="20" x2="78"  y2="9"/>
+      <line x1="105" y1="17" x2="105" y2="6"/>
+      <line x1="128" y1="20" x2="130" y2="9"/>
+      <line x1="148" y1="26" x2="151" y2="15"/>
+      <line x1="166" y1="37" x2="171" y2="26"/>
+    </g>
+  </svg>
+
+  <div class="w" style="position:relative;z-index:1;">
+    <span class="sl">👁 Written in Starlight</span>
+    <h2 class="st">Your Eyes</h2>
+    <p class="sb" style="color:rgba(255,255,255,.72);">
+      Almost black — like a garden pond at midnight where the lotus has closed its petals and the whole world has gone very still.
+      <br><br>
+      There is a depth in them that has nothing to do with darkness and everything to do with wonder. I have looked for a bottom to them and found only more to love.
+      <br><br>
+      They are, without question, the most beautiful thing I have ever had the privilege of being seen by.
+    </p>
+    <p class="eye-quote">"Like the night sky, they hold more<br>than they let you measure —<br>and that is entirely the point."</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════ FLOWERS ══════════════════════════ -->
+<section class="flowers-sec" id="s3">
+  <div class="blob" style="width:380px;height:380px;background:rgba(255,255,255,.04);top:-100px;right:-80px;z-index:0;"></div>
+  <div class="w" style="position:relative;z-index:1;">
+    <span class="sl">🌺 Her Garden</span>
+    <h2 class="st">Flowers That Are<br>Entirely You</h2>
+    <p class="sb">Tiger lilies as a gift — bold and spotted and warm.<br>Lotus as a garden — serene, ancient, always blooming.</p>
+    <div class="fl-row">
+      <div class="fl-item">
+        <svg width="136" height="172" viewBox="0 0 136 172" xmlns="http://www.w3.org/2000/svg">
+          <line x1="68" y1="168" x2="68" y2="92" stroke="#4a8a5e" stroke-width="3.2"/>
+          <path d="M68 136 Q46 122 42 110" stroke="#3a6b4a" stroke-width="1.8" fill="#5a9b6e" opacity=".8"/>
+          <path d="M68 120 Q90 106 94 96"  stroke="#3a6b4a" stroke-width="1.8" fill="#5a9b6e" opacity=".8"/>
+          <ellipse cx="68" cy="72" rx="11" ry="36" fill="#f07098" opacity=".93"/>
+          <ellipse cx="68" cy="72" rx="11" ry="36" fill="#d95888" opacity=".87" transform="rotate(60 68 72)"/>
+          <ellipse cx="68" cy="72" rx="11" ry="36" fill="#f07098" opacity=".87" transform="rotate(120 68 72)"/>
+          <ellipse cx="68" cy="72" rx="11" ry="36" fill="#d95888" opacity=".84" transform="rotate(180 68 72)"/>
+          <ellipse cx="68" cy="72" rx="11" ry="36" fill="#f07098" opacity=".84" transform="rotate(240 68 72)"/>
+          <ellipse cx="68" cy="72" rx="11" ry="36" fill="#d95888" opacity=".87" transform="rotate(300 68 72)"/>
+          <circle cx="68" cy="56" r="2.4" fill="#5a0018" opacity=".6"/>
+          <circle cx="77" cy="65" r="2"   fill="#5a0018" opacity=".55"/>
+          <circle cx="58" cy="63" r="2"   fill="#5a0018" opacity=".55"/>
+          <line x1="68" y1="72" x2="68"  y2="44" stroke="#4a8a5e" stroke-width="1.3"/>
+          <line x1="68" y1="72" x2="80"  y2="47" stroke="#4a8a5e" stroke-width="1.3"/>
+          <line x1="68" y1="72" x2="55"  y2="46" stroke="#4a8a5e" stroke-width="1.3"/>
+          <line x1="68" y1="72" x2="84"  y2="61" stroke="#4a8a5e" stroke-width="1.3"/>
+          <line x1="68" y1="72" x2="51"  y2="60" stroke="#4a8a5e" stroke-width="1.3"/>
+          <circle cx="68"  cy="44" r="3.5" fill="#c9a96e"/>
+          <circle cx="80"  cy="47" r="3"   fill="#c9a96e"/>
+          <circle cx="55"  cy="46" r="3"   fill="#c9a96e"/>
+          <circle cx="84"  cy="61" r="2.8" fill="#c9a96e"/>
+          <circle cx="51"  cy="60" r="2.8" fill="#c9a96e"/>
+        </svg>
+        <div class="fl-label">Pink Tiger Lily</div>
+        <div class="fl-sub">A gift, always</div>
+      </div>
+
+      <div class="fl-item">
+        <svg width="156" height="172" viewBox="0 0 156 172" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="78" cy="158" rx="58" ry="12" fill="#4a8a5e" opacity=".4"/>
+          <ellipse cx="52" cy="152" rx="36" ry="9"  fill="#3a6b4a" opacity=".32" transform="rotate(-18 52 152)"/>
+          <ellipse cx="104" cy="152" rx="36" ry="9" fill="#3a6b4a" opacity=".32" transform="rotate(18 104 152)"/>
+          <ellipse cx="78" cy="104" rx="16" ry="48" fill="#f5c2d0" opacity=".6" transform="rotate(-24 78 104)"/>
+          <ellipse cx="78" cy="104" rx="16" ry="48" fill="#f5c2d0" opacity=".6" transform="rotate(24 78 104)"/>
+          <ellipse cx="78" cy="104" rx="15" ry="44" fill="#e8829f" opacity=".5" transform="rotate(-50 78 104)"/>
+          <ellipse cx="78" cy="104" rx="15" ry="44" fill="#e8829f" opacity=".5" transform="rotate(50 78 104)"/>
+          <ellipse cx="78" cy="106" rx="14" ry="40" fill="#e8829f" opacity=".82" transform="rotate(-14 78 106)"/>
+          <ellipse cx="78" cy="106" rx="14" ry="40" fill="#e8829f" opacity=".82" transform="rotate(14 78 106)"/>
+          <ellipse cx="78" cy="108" rx="13" ry="38" fill="#d4547a"/>
+          <circle cx="78" cy="100" r="15" fill="#f9c856"/>
+          <circle cx="78" cy="100" r="9"  fill="#e8a020"/>
+          <circle cx="78" cy="87"  r="3"   fill="#ffd700"/>
+          <circle cx="70" cy="90"  r="2.4" fill="#ffd700"/>
+          <circle cx="86" cy="90"  r="2.4" fill="#ffd700"/>
+          <ellipse cx="78" cy="156" rx="62" ry="8" fill="none" stroke="#a8d5b5" stroke-width="1.4" opacity=".5"/>
+          <ellipse cx="78" cy="156" rx="74" ry="10" fill="none" stroke="#a8d5b5" stroke-width=".8" opacity=".28"/>
+        </svg>
+        <div class="fl-label">Garden Lotus</div>
+        <div class="fl-sub">Serene & eternal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CRABS ══════════════════════════ -->
+<section class="crab-sec" id="s4">
+  <div class="blob" style="width:300px;height:300px;background:var(--blush);top:-60px;left:-60px;opacity:.55;z-index:0;"></div>
+  <div class="w" style="position:relative;z-index:1;">
+    <span class="sl">🦀 Her Greatest Love</span>
+    <h2 class="st">Steamed Crabs<br><em style="color:var(--green);font-size:.62em;">( An Ode )</em></h2>
+    <p class="sb">I will go anywhere — any shore, any kitchen, any hidden seaside shack — just to share a pile of steamed crabs with you. That is a solemn vow.</p>
+    <div class="crab-row">
+      <div class="crab-b"><span class="cbi">🦀</span><div class="cbl">Steamed & Perfect</div><div class="cbn">Hot, seasoned, worth every shell-cracking moment.</div></div>
+      <div class="crab-b"><span class="cbi" style="animation-delay:.3s">🧄</span><div class="cbl">Garlic Butter</div><div class="cbn">Because some things deserve to be extra.</div></div>
+      <div class="crab-b"><span class="cbi" style="animation-delay:.6s">🍋</span><div class="cbl">Lemon & Herbs</div><div class="cbn">A little brightness — just like you bring to everything.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ HER SMILE ══════════════════════════ -->
+<section class="smile-sec" id="s5">
+  <div class="blob" style="width:350px;height:350px;background:rgba(61,26,94,.55);top:-90px;right:-90px;z-index:0;animation:none;"></div>
+  <div class="blob" style="width:240px;height:240px;background:rgba(201,75,122,.22);bottom:-70px;left:-50px;z-index:0;"></div>
+
+  <!-- Smile SVG — same dark treatment as the eye -->
+  <svg class="smile-svg" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="sg" cx="50%" cy="50%" r="55%">
+        <stop offset="0%" stop-color="#4a1828"/>
+        <stop offset="100%" stop-color="#1a0810"/>
+      </radialGradient>
+      <radialGradient id="lipg" cx="50%" cy="35%" r="60%">
+        <stop offset="0%" stop-color="#e8829f"/>
+        <stop offset="100%" stop-color="#b03060"/>
+      </radialGradient>
+      <filter id="sglo"><feGaussianBlur stdDeviation="2" result="cb"/><feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <clipPath id="sc"><ellipse cx="130" cy="60" rx="104" ry="46"/></clipPath>
+    </defs>
+
+    <!-- Skin base — the lower face area -->
+    <ellipse cx="130" cy="60" rx="104" ry="46" fill="url(#sg)"/>
+
+    <!-- The smile group — animates subtly -->
+    <g class="smile-curl-g" clip-path="url(#sc)">
+      <!-- upper lip shape -->
+      <path d="M74 52 Q96 44 116 50 Q130 46 144 50 Q164 44 186 52" stroke="#c94b7a" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <!-- Cupid's bow peak -->
+      <path d="M110 50 Q130 42 150 50" stroke="#d4547a" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+
+      <!-- THE MAIN SMILE CURVE -->
+      <path d="M72 56 Q96 82 130 88 Q164 82 188 56" stroke="#e8829f" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+      <!-- Teeth — a glimpse, like light through a window -->
+      <path d="M88 66 Q110 80 130 82 Q150 80 172 66 Q164 78 130 84 Q96 78 88 66Z" fill="white" opacity="0.18"/>
+
+      <!-- Inner mouth depth -->
+      <path d="M90 68 Q110 82 130 84 Q150 82 170 68 Q162 86 130 90 Q98 86 90 68Z" fill="#3a0818" opacity="0.55"/>
+
+      <!-- Lip gloss glimmer -->
+      <ellipse cx="115" cy="76" rx="18" ry="5" fill="white" opacity="0.06" filter="url(#sglo)" class="smile-glow"/>
+      <ellipse cx="113" cy="74" rx="8" ry="2.5" fill="white" opacity="0.22" class="smile-glow"/>
+
+      <!-- Lower lip fullness -->
+      <path d="M88 66 Q130 95 172 66 Q164 88 130 92 Q96 88 88 66Z" fill="url(#lipg)" opacity="0.55"/>
+    </g>
+
+    <!-- Dimple hints — left and right -->
+    <ellipse cx="68" cy="64" rx="7" ry="5" fill="#e8829f" opacity="0.4" class="smile-dimple-l" transform="rotate(-15 68 64)"/>
+    <ellipse cx="192" cy="64" rx="7" ry="5" fill="#e8829f" opacity="0.4" class="smile-dimple-r" transform="rotate(15 192 64)"/>
+
+    <!-- Closing smile arc — the bounding shape like the eye's lid -->
+    <path d="M26 60 Q130 18 234 60" fill="#180f14" opacity="0.0"/>
+    <!-- Top fade — like the upper eyelid gives form to the eye -->
+    <path d="M26 60 Q130 22 234 60 Q234 14 130 10 Q26 14 26 60Z" fill="#12080e" opacity="0.55"/>
+
+    <!-- Corner lash-like detail lines — echoing the eye -->
+    <g opacity="0.55" stroke="#c94b7a" stroke-width="1.4" stroke-linecap="round">
+      <line x1="50" y1="50" x2="42" y2="38"/>
+      <line x1="70" y1="40" x2="65" y2="28"/>
+      <line x1="94" y1="33" x2="91" y2="20"/>
+      <line x1="130" y1="30" x2="130" y2="17"/>
+      <line x1="166" y1="33" x2="169" y2="20"/>
+      <line x1="190" y1="40" x2="195" y2="28"/>
+      <line x1="210" y1="50" x2="218" y2="38"/>
+    </g>
+    <!-- tiny dots at lash tips -->
+    <g fill="#e07fa0" opacity="0.5">
+      <circle cx="42" cy="37" r="2.2"/>
+      <circle cx="65" cy="27" r="2"/>
+      <circle cx="91" cy="19" r="2"/>
+      <circle cx="130" cy="16" r="2.4"/>
+      <circle cx="169" cy="19" r="2"/>
+      <circle cx="195" cy="27" r="2"/>
+      <circle cx="218" cy="37" r="2.2"/>
+    </g>
+  </svg>
+
+  <div class="w" style="position:relative;z-index:1;">
+    <span class="sl">✦ Written in Warmth</span>
+    <h2 class="st">Your Smile</h2>
+    <p class="sb" style="color:rgba(255,255,255,.72);">
+      There are a lot of beautiful things in this world. Lotus gardens. Starlit ponds. The first warm day of spring.
+      <br><br>
+      And then there is your smile — which quietly outranks all of them.
+      <br><br>
+      It is the kind that arrives suddenly and stays with you for days. The kind that makes everything it touches a little warmer. The kind that, I must confess, has completely undone me.
+    </p>
+    <p class="smile-quote">"There are smiles that politely acknowledge the world,<br>and then there is yours — which quietly rewrites it."</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════ THE QUESTION ══════════════════════════ -->
+<section class="q-sec" id="s6">
+  <svg class="lotus-q" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="100" cy="165" rx="60" ry="14" fill="#5a9b6e" opacity=".5"/>
+    <ellipse cx="68"  cy="158" rx="38" ry="10" fill="#3a6b4a" opacity=".38" transform="rotate(-20 68 158)"/>
+    <ellipse cx="132" cy="158" rx="38" ry="10" fill="#3a6b4a" opacity=".38" transform="rotate(20 132 158)"/>
+    <ellipse cx="100" cy="110" rx="18" ry="52" fill="#f5c2d0" opacity=".62" transform="rotate(-25 100 110)"/>
+    <ellipse cx="100" cy="110" rx="18" ry="52" fill="#f5c2d0" opacity=".62" transform="rotate(25 100 110)"/>
+    <ellipse cx="100" cy="110" rx="18" ry="52" fill="#e8829f" opacity=".5"  transform="rotate(-50 100 110)"/>
+    <ellipse cx="100" cy="110" rx="18" ry="52" fill="#e8829f" opacity=".5"  transform="rotate(50 100 110)"/>
+    <ellipse cx="100" cy="112" rx="16" ry="46" fill="#e8829f" opacity=".82" transform="rotate(-13 100 112)"/>
+    <ellipse cx="100" cy="112" rx="16" ry="46" fill="#e8829f" opacity=".82" transform="rotate(13 100 112)"/>
+    <ellipse cx="100" cy="115" rx="14" ry="44" fill="#d4547a"/>
+    <circle cx="100" cy="110" r="16" fill="#f9c856"/>
+    <circle cx="100" cy="110" r="10" fill="#e8a020"/>
+    <circle cx="100" cy="98"  r="3"   fill="#ffd700"/>
+    <circle cx="93"  cy="101" r="2.5" fill="#ffd700"/>
+    <circle cx="107" cy="101" r="2.5" fill="#ffd700"/>
+    <ellipse cx="100" cy="162" rx="76" ry="8" fill="none" stroke="#a8d5b5" stroke-width="1.4" opacity=".55"/>
+    <ellipse cx="100" cy="162" rx="90" ry="10" fill="none" stroke="#a8d5b5" stroke-width=".8" opacity=".28"/>
+  </svg>
+
+  <h2 class="q-title">Will You Be<br>My Girlfriend?</h2>
+  <p class="q-sub">You who finds beauty in spirals and titans and garden ponds at dusk —</p>
+  <p class="q-whisper">✦ you whose eyes hold more than the night sky ✦</p>
+
+  <div class="btn-row">
+    <button class="btn-yes" onclick="sayYes()">Yes, always 💕</button>
+    <button class="btn-no" id="noBtn" onmouseover="flee(this)" ontouchstart="flee(this)">Maybe not…</button>
+  </div>
+</section>
+
+<!-- ══ CELEBRATION ══ -->
+<div class="celeb" id="celeb">
+  <div class="ci2">🌸</div>
+  <h1 class="ch">She Said Yes! 🌺</h1>
+  <p class="cp">My heart just bloomed like a thousand lotus flowers and tiger lilies all at once.<br><br>Thank you — you wonderful, dark-eyed, crab-loving, mythology-adoring, perfectly complex, entirely beautiful person.</p>
+  <p class="cn">✦ Across every timeline and every loop, I would choose you again. ✦</p>
+</div>
+
+<footer>
+  Crafted with <span>🌷</span> tiger lilies · <span>🪷</span> lotus · <span>🦀</span> crab butter · <span>🏛️</span> myth · and endless love — just for you.
+</footer>
+
+<script>
+const pl = document.getElementById('petals');
+const pc = ['#f5c2d0','#e8829f','#d4547a','#a8d5b5','#5a9b6e','#fde8ef','#e8d4f5','#f0d898'];
+for(let i=0;i<36;i++){
+  const p=document.createElement('div'); p.className='p';
+  const s=8+Math.random()*18;
+  p.style.cssText=`left:${Math.random()*100}%;width:${s}px;height:${s*.65}px;background:${pc[~~(Math.random()*pc.length)]};animation-duration:${7+Math.random()*12}s;animation-delay:${Math.random()*10}s;border-radius:${Math.random()>.5?'50% 0 50% 0':'60% 40% 70% 30%'};`;
+  pl.appendChild(p);
+}
+const sEls = [document.querySelector('.hero'),...['s1','s2','s3','s4','s5','s6'].map(id=>document.getElementById(id))];
+const dots = document.querySelectorAll('.nd');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY+window.innerHeight/2;
+  let cur=0;
+  sEls.forEach((el,i)=>{if(el&&el.offsetTop<=y)cur=i;});
+  dots.forEach((d,i)=>{d.classList.toggle('active',i===cur);});
+});
+function flee(btn){
+  const mx=window.innerWidth-195,my=window.innerHeight-78;
+  btn.style.cssText+=`;position:fixed;left:${Math.random()*mx}px;top:${Math.random()*my}px;z-index:50;transition:left .35s ease,top .35s ease;`;
+}
+function sayYes(){
+  const cols=['#d4547a','#e8829f','#5a9b6e','#f9c856','#a8d5b5','#fde8ef','#c9a96e','#e87098','#b090d0','#90c0a0'];
+  for(let i=0;i<120;i++){
+    const c=document.createElement('div'); c.className='conf';
+    c.style.cssText=`left:${Math.random()*100}vw;top:-22px;width:${6+Math.random()*9}px;height:${6+Math.random()*9}px;background:${cols[~~(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'3px'};animation-delay:${Math.random()*1}s;animation-duration:${2.5+Math.random()*2.2}s;`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5500);
+  }
+  setTimeout(()=>document.getElementById('celeb').classList.add('on'),380);
+}
+</script>
+</body>
+</html>
