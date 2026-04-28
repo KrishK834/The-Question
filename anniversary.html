@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Month 🌙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --pink:#c94b7a;
+}
+
+body{
+  margin:0;
+  font-family:'Cormorant Garamond',serif;
+  background:linear-gradient(155deg,#0c0c0f 0%,#1a0f1f 50%,#050508 100%);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* container */
+.wrap{
+  max-width:800px;
+  padding:40px 20px;
+  position:relative;
+  z-index:2;
+}
+
+/* heading */
+.title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.5rem,6vw,4rem);
+  color:#f5c2d0;
+  margin-bottom:20px;
+}
+
+/* subtitle */
+.sub{
+  letter-spacing:.3em;
+  font-size:.8rem;
+  color:#aaa;
+  margin-bottom:30px;
+}
+
+/* text */
+.message{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+  padding:30px;
+  line-height:1.8;
+  color:rgba(255,255,255,0.75);
+}
+
+/* floating layer */
+.float-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.f{
+  position:absolute;
+  font-size:2.2rem;
+  opacity:0.7;
+  animation:floatUp linear infinite;
+}
+
+.f:nth-child(1){left:10%; animation-duration:12s;}
+.f:nth-child(2){left:25%; animation-duration:16s;}
+.f:nth-child(3){left:45%; animation-duration:14s;}
+.f:nth-child(4){left:65%; animation-duration:18s;}
+.f:nth-child(5){left:80%; animation-duration:15s;}
+.f:nth-child(6){left:55%; animation-duration:20s;}
+
+@keyframes floatUp{
+  0%{
+    transform:translateY(110vh) scale(0.8) rotate(0deg);
+    opacity:0;
+  }
+  10%{opacity:0.7;}
+  50%{
+    transform:translateY(40vh) scale(1) rotate(180deg);
+  }
+  100%{
+    transform:translateY(-10vh) scale(1.1) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* music button */
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-size:1.2rem;
+  z-index:5;
+}
+</style>
+</head>
+
+<body>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="audio2.mp3" type="audio/mpeg">
+</audio>
+
+<div class="float-layer">
+  <div class="f">🌸</div>
+  <div class="f">🐚</div>
+  <div class="f">🖤</div>
+  <div class="f">🌑</div>
+  <div class="f">🌸</div>
+  <div class="f">🐚</div>
+</div>
+
+<div class="wrap">
+  <div class="sub">🌙</div>
+  <div class="title">A Small Chapter<br>Already Infinite</div>
+
+  <div class="message">
+    It has been one month since the faithful day. Feels like a century and a single minute simultaenously. There is not a single moment with you that feels boring. 
+    <br><br>
+    Be it talking about our normal everyday lives or spilling tea, every moment feels special and I wish to cherish it all. I love you far more than you could ever understand. I love your beautiful eyes, your smirk, your teasing, your jokes, I love everything about you and will continue to do so.
+    <br><br>
+    I am lacking words to express myself properly so I would like to conclude it with saying I love you and thankyou for always being there for me during the laughter and the tears, you have changed my life far beyond anyones expectation, taking it in a positive direction. Thankyou for always being there for me and I hope I will be able to support you as much you have supported me during both the times of happiness and turmoil.
+    <br><br>
+    It has been a wonderful month and here is to having many more as we grow older together 💘
+  </div>
+</div>
+
+<!-- MUSIC TOGGLE -->
+<div class="music-btn" onclick="toggleMusic()">🔊</div>
+
+<script>
+const music = document.getElementById("bgMusic");
+let playing = false;
+
+// try autoplay (will fail silently on most browsers)
+window.addEventListener("load", () => {
+  music.volume = 0.5;
+  music.play().then(()=>{
+    playing = true;
+  }).catch(()=>{});
+});
+
+// user interaction fallback
+document.body.addEventListener("click", () => {
+  if (!playing){
+    music.play();
+    playing = true;
+  }
+}, { once: true });
+
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+    playing = true;
+  } else {
+    music.pause();
+    playing = false;
+  }
+}
+</script>
+
+</body>
+</html>
